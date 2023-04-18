@@ -33,7 +33,7 @@ export const nextAuthOptions: NextAuthOptions = {
 
           if (!isValidPassword) return null;
 
-          return { id: String(result.id), email, username: result.username };
+          return { id: String(result.id), email: email, username: result.username };
         } catch {
           return null;
         }
