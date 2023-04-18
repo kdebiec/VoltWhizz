@@ -10,7 +10,7 @@ export interface NavbarProps {
 export const Navbar: React.FC<NavbarProps> = ({}) => (
     <header className={navbarModule.header}>
         <div className={`${navbarModule.headerContainer} ${componentsStyles.container}`}>
-            <a className={navbarModule.headerLeft} href="/">VoltWhizz</a>
+            <Link className={navbarModule.headerLeft} href="/">VoltWhizz</Link>
             <ul className={navbarModule.headerMiddle}>
                 <li><Link className={navbarModule.activeFont} href="/">Features</Link></li>
                 <li><Link href="/roadmap">Roadmap</Link></li>

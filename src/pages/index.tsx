@@ -17,7 +17,7 @@ export default function Home() {
           <div className={`${styles.heroContainer} ${componentsStyles.container}`}>
             <h1 className={styles.heroTitle}>VoltWhizz</h1>
             <div className={styles.heroSubtitleContainer}>
-              <p>Find the best deals on electricity. It's free. It's open source.</p>
+              <p>Find the best deals on electricity. It&apos;s free. It&apos;s open source.</p>
             </div>
           </div>
         </section>
