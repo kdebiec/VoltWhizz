@@ -4,31 +4,14 @@ import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
 import componentsStyles from '@/styles/Components.module.css'
 
+import { Navbar } from '@/components/NavBar/navbar'
+
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   return (
     <>
-      <Head>
-        <title>VoltWhizz</title>
-        <meta name="description" content="VoltWhizz is a web app that aggregates electricity sellers and helps homeowners find the best deals on electricity." />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <header className={styles.header}>
-        <div className={`${styles.headerContainer} ${componentsStyles.container}`}>
-          <a className={styles.headerLeft} href="/">VoltWhizz</a>
-          <ul className={styles.headerMiddle}>
-            <li><a className={styles.activeFont} href="/Features">Features</a></li>
-            <li><a href="/roadmap">Roadmap</a></li>
-            <li><a href="/Github">Github</a></li>
-          </ul>
-          <div className={styles.headerRight}>
-            {/* <a className={`${styles.activeLang} ${styles.langSwitcher}`} href="/en">EN</a>
-            <a className={styles.langSwitcher} href="/pl">PL</a> */}
-          </div>
-        </div>
-      </header>
+    <Navbar />
       <main className={styles.main}>
         <section className={styles.heroSection}>
           <div className={`${styles.heroContainer} ${componentsStyles.container}`}>

@@ -3,6 +3,8 @@ import { useSession, signOut } from "next-auth/react";
 
 import { requireAuth } from "../../common/requireAuth";
 
+import { Navbar } from '@/components/NavBar/navbar'
+
 export const getServerSideProps = requireAuth(async (ctx) => {
   return { props: {} };
 });
@@ -11,6 +13,8 @@ const Dashboard: NextPage = () => {
   const { data } = useSession();
 
   return (
+    <>
+    <Navbar/>
     <div className="hero min-h-screen bg-base-200">
       <div className="hero-content">
         <div className="max-w-lg">
@@ -37,6 +41,7 @@ const Dashboard: NextPage = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

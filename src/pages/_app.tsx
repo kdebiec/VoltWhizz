@@ -5,7 +5,9 @@
 //   return <Component {...pageProps} />
 // }
 
-import "../styles/globals.css";
+import Head from 'next/head'
+
+import '@/styles/globals.css'
 import type { AppProps } from "next/app";
 import type { Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
@@ -21,6 +23,12 @@ interface CustomAppProps extends AppProps {
 const CustomApp = ({ Component, pageProps }: CustomAppProps) => {
   return (
     <SessionProvider session={pageProps.session}>
+            <Head>
+        <title>VoltWhizz</title>
+        <meta name="description" content="VoltWhizz is a web app that aggregates electricity sellers and helps homeowners find the best deals on electricity." />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <Component {...pageProps} />
     </SessionProvider>
   );
