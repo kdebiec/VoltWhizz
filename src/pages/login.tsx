@@ -68,8 +68,8 @@ const LogIn: NextPage = () => {
                 Login
               </Button>
               <Link href="/signup" className={styles.link}>
-                  Go to sign up
-                </Link>
+                Go to sign up
+              </Link>
             </form>
           </div>
         </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from "next/link";
 import { useRouter } from "next/router";
 import navbarModule from './navbar.module.css';
 import componentsStyles from '@/styles/Components.module.css'
@@ -11,9 +12,9 @@ export const Navbar: React.FC<NavbarProps> = ({}) => (
         <div className={`${navbarModule.headerContainer} ${componentsStyles.container}`}>
             <a className={navbarModule.headerLeft} href="/">VoltWhizz</a>
             <ul className={navbarModule.headerMiddle}>
-                <li><a className={navbarModule.activeFont} href="/Features">Features</a></li>
-                <li><a href="/roadmap">Roadmap</a></li>
-                <li><a href="/Github">Github</a></li>
+                <li><Link className={navbarModule.activeFont} href="/">Features</Link></li>
+                <li><Link href="/roadmap">Roadmap</Link></li>
+                <li><Link href="/Github">Github</Link></li>
             </ul>
             <div className={navbarModule.headerRight}>
                 {/* <a className={`${styles.activeLang} ${styles.langSwitcher}`} href="/en">EN</a>
