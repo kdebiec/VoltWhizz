@@ -1,5 +1,4 @@
 import type { NextPage } from "next";
-import Head from "next/head";
 import Link from "next/link";
 import { useCallback } from "react";
 import { useRouter } from "next/router";
@@ -46,7 +45,7 @@ const SignUp: NextPage = () => {
         <div className={styles.loginscreen}>
           <div className={styles.loginmain}>
             <form className={styles.card} onSubmit={handleSubmit(onSubmit)}>
-              <h2 className={styles.cardTitle}>Create an account!</h2>
+              <h2 className={styles.cardTitle}>Create an account</h2>
               <Controller
                 name="username"
                 control={control}
