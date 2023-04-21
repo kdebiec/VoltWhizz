@@ -10,7 +10,6 @@ import { Button } from "@/components/button/button";
 import Link from "next/link";
 import { useCallback } from "react";
 
-import { Feature } from "@prisma/client";
 import { prisma } from "../../common/prisma";
 
 import moment from "moment";
@@ -66,12 +65,21 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
   return {
     props: { features: JSON.stringify(features) },
-    // revalidate: 10,
   };
 };
 
 type Props = {
   features: string;
+}
+
+type Feature = {
+  id: number;
+  name: string;
+  createdAt: Date;
+  _count: {
+    votesInfo: number;
+  };
+  userVoted: boolean;
 }
 
 const Roadmap = ({ features }: Props) => {
@@ -112,7 +120,7 @@ const Roadmap = ({ features }: Props) => {
     if (userVoted) {
       try {
         const body = { featureId };
-        const response = await fetch('/api/vote/'+featureId, {
+        const response = await fetch('/api/vote/' + featureId, {
           method: 'DELETE',
         });
 
@@ -120,7 +128,6 @@ const Roadmap = ({ features }: Props) => {
           throw new Error(`Error: ${response.statusText}`);
         }
 
-        // Handle response if necessary, e.g., update the UI, fetch new data, etc.
         console.log('Vote submitted successfully');
         router.replace(router.asPath);
       } catch (error) {
@@ -138,7 +145,6 @@ const Roadmap = ({ features }: Props) => {
           throw new Error(`Error: ${response.statusText}`);
         }
 
-        // Handle response if necessary, e.g., update the UI, fetch new data, etc.
         console.log('Vote submitted successfully');
         router.replace(router.asPath);
       } catch (error) {
@@ -192,7 +198,7 @@ const Roadmap = ({ features }: Props) => {
           <h1 className={styles.roadmapTitle}>Feature propositions</h1>
           {parsedFeatures.map((feature: Feature) => (
             <article className={styles.roadmapItem} key={feature.id}>
-              <button className={`${styles.voteButton} ${feature.userVoted ? styles.voteButtonVoted : null}`} onClick={() => { submitVote(feature.id, feature.userVoted ) }}>
+              <button className={`${styles.voteButton} ${feature.userVoted ? styles.voteButtonVoted : null}`} onClick={() => { submitVote(feature.id, feature.userVoted) }}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
                 <span className={styles.voteButtonCount}>{feature._count.votesInfo}</span>
               </button>
