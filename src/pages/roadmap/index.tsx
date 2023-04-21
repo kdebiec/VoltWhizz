@@ -1,22 +1,20 @@
-import type { NextPage } from "next";
-import { useSession, signOut } from "next-auth/react";
+import { GetStaticProps } from "next";
+import { useSession } from "next-auth/react";
 
-import { requireAuth } from "../../common/requireAuth";
-import { useForm, Controller } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 
-import { Navbar } from '@/components/NavBar/navbar'
-import styles from '@/styles/Roadmap.module.css'
+import { Navbar } from '@/components/NavBar/navbar';
+import styles from '@/styles/Roadmap.module.css';
 
-import Link from "next/link";
 import { Button } from "@/components/button/button";
+import Link from "next/link";
 import { useCallback } from "react";
 
+import { Feature } from "@prisma/client";
 import { prisma } from "../../common/prisma";
 
-import { GetStaticProps } from "next"
-import { Feature } from "@prisma/client";
-
 import moment from "moment";
+import { useRouter } from "next/router";
 
 type IFeature = {
   featureName: string;
@@ -24,7 +22,7 @@ type IFeature = {
 
 export const getStaticProps: GetStaticProps = async () => {
   const feed = await prisma.feature.findMany({
-    take: 10,
+    take: 100,
   });
   return {
     props: { feed: JSON.stringify(feed) },
@@ -37,9 +35,9 @@ type Props = {
 }
 
 const Roadmap = ({feed} : Props) => {
+  const router = useRouter();
   const session = useSession();
-  const parsedFeed = JSON.parse(feed? feed : "[]")
-  const rtf1 = new Intl.RelativeTimeFormat('en', { style: 'short' });
+  const parsedFeed = JSON.parse(feed? feed : "[]");
 
   const { handleSubmit, control, reset } = useForm<IFeature>({
     defaultValues: {
@@ -53,13 +51,13 @@ const Roadmap = ({feed} : Props) => {
         console.log(data.featureName)
         const name = data.featureName
         const body = { name };
-        await fetch("/api/feature", {
+        let res = await fetch("/api/feature", {
           method: "POST",
-          headers: { "Content-Type": "application/json", },
           body: JSON.stringify(body),
         });
+        console.log(res)
         reset();
-        // location.reload()
+        router.replace(router.asPath);
       } catch (err) {
         console.error(err);
       }

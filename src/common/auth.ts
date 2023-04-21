@@ -70,5 +70,4 @@ export const nextAuthOptions: NextAuthOptions = {
     signIn: "/roadmap",
     newUser: "/signup",
   },
-  secret: "super-secret",
 };

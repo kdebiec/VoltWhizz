@@ -1,20 +1,15 @@
-import { getSession } from "next-auth/react";
 import { prisma } from "../../../common/prisma";
+import { getToken } from "next-auth/jwt";
 
-// POST /api/post
-// Required fields in body: title
-// Optional fields in body: content
+// POST /api/feature
+// Required fields in body: name
 export default async function handle(req, res) {
-  const { name } = req.body;
-  const session = await getSession({ req });
-
-  console.log("gee")
-  console.log(session)
-
+  const { name } = JSON.parse(req.body);
+  const token = await getToken({req})
   const result = await prisma.feature.create({
     data: {
       name: name,
-      user: { connect: { email: session?.user?.email } },
+      user: { connect: { id: parseInt(token?.userId! ) } },
     },
   });
   res.json(result);
