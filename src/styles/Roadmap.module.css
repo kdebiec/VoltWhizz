@@ -82,6 +82,16 @@
     background-color: rgb(212 212 216/var(--tw-bg-opacity));
 }
 
+.voteButtonVoted {
+    --tw-bg-opacity: 0.5;
+    background-color: rgb(193 225 193/var(--tw-bg-opacity));
+}
+
+.voteButtonVoted:hover {
+    --tw-bg-opacity: 1;
+    background-color: rgb(193 225 193/var(--tw-bg-opacity));
+}
+
 .voteButtonCount {
     font-weight: 700;
     font-size: .875rem;
